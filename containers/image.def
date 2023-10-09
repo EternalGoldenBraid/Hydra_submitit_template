@@ -1,0 +1,20 @@
+Bootstrap: localimage
+FROM: base/new_base.sif
+
+%environment
+    export PATH="/home/myuser/miniconda3/condabin:${PATH}"
+
+%files
+    /home/nicklas/Projects/Hydra_slurm_template/install.sh /home/myuser/install.sh
+
+%post
+     su - myuser -c "export PATH=/home/myuser/miniconda3/condabin:$PATH && bash /home/myuser/install.sh"
+ 
+%runscript
+     #!/bin/bash
+     # Activate the Conda environment
+     source /home/myuser/miniconda3/bin/activate apptainer_env
+     echo "After activation:"
+     which python
+     # Now execute the user's commands
+     exec "$@"
