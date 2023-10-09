@@ -1,0 +1,22 @@
+# @package _global_
+
+custom_launcher:
+  # Apptainer
+  image_path: image.sif
+  mount: ${paths.network_drive}:${paths.network_drive}
+
+hydra:
+  launcher:
+    # This custom python expects `apptainer run` to activate a conda (pip?) env
+    # python: "apptainer run --no-home ${custom_launcher.image_path} python" # No mount
+    python: "apptainer run --no-home --bind ${custom_launcher.mount} ${custom_launcher.image_path} python"
+
+      
+    # Default hydra_submitit config from `python your_app.py hydra/launcher=submitit_slurm --cfg hydra -p hydra.launcher`
+    name: ${hydra.job.name}
+    cpus_per_task: 1
+    mem_per_cpu: 1G
+    partition: A100
+    timeout_min: 1
+    _target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+

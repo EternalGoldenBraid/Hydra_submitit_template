@@ -1,0 +1,2 @@
+logger_name: mlflow
+tracking_uri: file://${paths.logging_root_path}/mlruns

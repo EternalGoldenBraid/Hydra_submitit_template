@@ -1,0 +1,12 @@
+#@package _global_
+
+defaults:
+  # - experiments: apptainer_tests1/shared
+  - task_1/shared
+  - _self_
+
+continue_from_checkpoint: True
+
+# Here I want to add to experiments some exp1 specific things.
+experiments:
+  description: "One experiment"

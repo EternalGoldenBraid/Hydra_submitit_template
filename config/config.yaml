@@ -1,0 +1,19 @@
+defaults:
+  - paths: config
+  - logging: mlflow
+  # - override hydra/launcher: ${env:HYDRA_LAUNCHER,basic} # TODO Figure out how to use env var here.
+  
+  # For slurm jobs
+  - launcher: submitit_slurm_apptainer
+  - override hydra/launcher: submitit_slurm
+
+  - _self_
+
+hydra:
+  job:
+    chdir: true # Whether Hydra changes working dir or not.
+  run: 
+    dir: ${paths.logging_path}/run/${now:%Y-%m-%d}/${now:%H-%M-%S}/${hydra.job.override_dirname}
+  sweep: 
+    dir: ${paths.logging_path}/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.override_dirname}

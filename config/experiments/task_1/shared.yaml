@@ -1,0 +1,10 @@
+#@package _global_
+
+experiments:
+  description: '???'
+  shared_var: "SHARED:This is a shared var"
+  name: "experiments_funky"
+
+paths:
+  # Set logging path to the specific class of experiments.
+   logging_path: ${paths.logging_root_path}/experiments/${experiments.name}

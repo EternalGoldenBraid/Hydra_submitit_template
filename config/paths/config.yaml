@@ -1,0 +1,11 @@
+data_root: Dataset
+train_dir: ${paths.data_root}/train_data
+val_dir: ${paths.data_root}/val_data
+  
+# network_drive: ${env:NFS_PATH}
+network_drive: /some_drive/user
+
+# Logging/Checkpoints
+# logging_root_path: ${env:LOGGING_ROOT_DIR} # TODO
+# logging_root_path: ${paths.network_drive}/slurm
+logging_path: '${paths.logging_root_path}/default' # Must be populated by e.g. config.experiments

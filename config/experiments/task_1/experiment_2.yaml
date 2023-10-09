@@ -1,0 +1,11 @@
+#@package _global_
+
+defaults:
+  - task_1/shared
+  - _self_
+
+continue_from_checkpoint: False
+
+# Here I want to add to experiments some exp2 specific things.
+experiments:
+  description: "Another experiment"
