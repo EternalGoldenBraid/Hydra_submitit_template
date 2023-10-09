@@ -1,5 +1,5 @@
 Bootstrap: localimage
-FROM: base/new_base.sif
+FROM: containers/base.sif
 
 %environment
     export PATH="/home/myuser/miniconda3/condabin:${PATH}"
